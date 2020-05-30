@@ -17,13 +17,11 @@
 <body>
 
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+<canvas id="myCanvas" width="480" height="500"></canvas>
 
 <script>
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = window.innerHeight;
 	
 	var score = 0;
 	var lives = 3;
@@ -46,8 +44,8 @@
 	var paddleX = (canvas.width-paddleWidth) / 2;
 	
 	//Brick Variables
-	var brickColumnCount = 5;
-	var brickWidth = 75;
+	var brickColumnCount = 10;
+	var brickWidth = 80;
 	var brickHeight = 20;
 	var brickPadding = 10;
 	var brickOffsetTop = 30;
@@ -88,9 +86,17 @@
 		}
 	}
 	
+	function handleMove(e) {
+		var relativeX = e.clientX - canvas.offsetLeft;
+			if(relativeX > 0 && relativeX < canvas.width) {
+				paddleX = relativeX - paddleWidth/2;
+			}
+	}
+	
 	document.addEventListener("keydown", keyDownHandler, false);
 	document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("mousemove", mouseMoveHandler, false);
+	document.addEventListener("touchmove", handleMove, false);
 	
 	function collisionDetection() {
 		for(var c=0; c<brickColumnCount; c++) {
