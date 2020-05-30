@@ -5,7 +5,17 @@
     <title>Breakout</title>
     <style>
     	* { padding: 0; margin: 0; }
-    	canvas { display: block; margin: 0 auto; }
+    	canvas { padding: 0;
+			margin: auto;
+			display: block;
+			width: 800px;
+			height: 600px;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0; 
+		}
 		body {
 			background-image: url('NEW-MENU-5.png');
 			background-repeat: no-repeat;
@@ -87,9 +97,9 @@
 	}
 	
 	function handleTouchMove(e) {
-	
+		e.preventDefault(); 
 		var touch = e.touches[0];
-		var relativeX = touch.clientX-canvas.offsetLeft;
+		var relativeX = touch.clientX;
 		if(relativeX > 0 && relativeX < canvas.width) {
 			paddleX = relativeX - paddleWidth/2;
 		}
