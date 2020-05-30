@@ -86,9 +86,10 @@
 		}
 	}
 	
-	function handleMove(e) {
-		var touches = e.changedTouchs[0]
-		var relativeX = document.elementFromPoint(touchs.clientX, touchs.clientY);
+	function handleTouchMove(e) {
+	
+		var touch = e.touches[0];
+		var relativeX = touch.clientX-canvas.offsetLeft;
 		if(relativeX > 0 && relativeX < canvas.width) {
 			paddleX = relativeX - paddleWidth/2;
 		}
@@ -99,7 +100,7 @@
 	document.addEventListener("keydown", keyDownHandler, false);
 	document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("mousemove", mouseMoveHandler, false);
-	document.addEventListener("touchmove", handleMove, false);
+	document.addEventListener("touchmove", handleTouchMove, false);
 	
 	function collisionDetection() {
 		for(var c=0; c<brickColumnCount; c++) {
