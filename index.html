@@ -87,10 +87,13 @@
 	}
 	
 	function handleMove(e) {
-		var relativeX = e.clientX - canvas.offsetLeft;
-			if(relativeX > 0 && relativeX < canvas.width) {
-				paddleX = relativeX - paddleWidth/2;
-			}
+		var touches = e.changedTouchs[0]
+		var relativeX = document.elementFromPoint(touchs.clientX, touchs.clientY);
+		if(relativeX > 0 && relativeX < canvas.width) {
+			paddleX = relativeX - paddleWidth/2;
+		}
+		
+		
 	}
 	
 	document.addEventListener("keydown", keyDownHandler, false);
